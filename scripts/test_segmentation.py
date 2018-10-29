@@ -9,7 +9,7 @@ from argparse import ArgumentParser
 from os.path import join
 import argparse
 import sys
-caffe_root = 'ENet/caffe-enet/'  # Change this to the absolute directory to ENet Caffe
+caffe_root = '/root/ENet/caffe-enet/'  # Change this to the absolute directory to ENet Caffe
 sys.path.insert(0, caffe_root + 'python')
 import caffe
 sys.path.append('/usr/local/lib/python2.7/site-packages')

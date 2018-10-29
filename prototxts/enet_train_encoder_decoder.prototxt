@@ -5,7 +5,7 @@ layer {
   top: "data"
   top: "label"
   dense_image_data_param {
-    source: "ENet/dataset/train_fine_2columns.txt"
+    source: "/root/ENet/dataset/train_fine_2columns.txt"
     batch_size: 3
     shuffle: true
     new_height: 512
