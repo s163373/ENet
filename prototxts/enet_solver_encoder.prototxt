@@ -14,6 +14,6 @@ max_iter: 75000
 weight_decay: 0.0002
 snapshot: 10000
 snapshot_prefix: "/root/ENet/weights/snapshots_encoder/enet"  # Change this to the absolute path to where you wish to output solver snapshots
-solver_mode: CPU
+solver_mode: GPU
 solver_type: ADAM
 momentum2: 0.999

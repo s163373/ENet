@@ -5,8 +5,8 @@ layer {
   top: "data"
   top: "label"
   dense_image_data_param {
-    source: "ENet/dataset/train_fine_cityscapes.txt"
-    batch_size: 4
+    source: "/root/ENet/dataset/train_fine_cityscapes.txt"
+    batch_size: 2
     shuffle: true
     new_height: 512
     new_width: 1024
