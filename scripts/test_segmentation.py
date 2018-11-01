@@ -67,7 +67,7 @@ if __name__ == '__main__':
     label_colours_bgr = label_colours[..., ::-1]
     cv2.LUT(prediction, label_colours_bgr, prediction_rgb)
 
-    cv2.imshow("ENet", prediction_rgb)
+#    cv2.imshow("ENet", prediction_rgb)
     key = cv2.waitKey(0)
 
     if args.out_dir is not None:
@@ -78,9 +78,4 @@ if __name__ == '__main__':
 
         cv2.imwrite(out_path_im, prediction_rgb)
         # cv2.imwrite(out_path_gt, prediction) #  label images, where each pixel has an ID that represents the class
-
-
-
-
-
 
