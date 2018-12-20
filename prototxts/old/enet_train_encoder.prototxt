@@ -1,15 +1,16 @@
 name: "ENet"
 layer {
   name: "data"
-  type: "Input"
+  type: "DenseImageData"
   top: "data"
-  input_param {
-    shape {
-      dim: 1
-      dim: 3
-      dim: 264
-      dim: 480
-    }
+  top: "label"
+  dense_image_data_param {
+    source: "/root/ENet/dataset/train_greenhouse.txt"
+    batch_size: 10
+    shuffle: true
+    new_height: 264
+    new_width: 480 
+    label_divide_factor: 8
   }
 }
 layer {
@@ -71,7 +72,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -117,7 +118,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -164,7 +165,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -210,7 +211,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -221,7 +222,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.01\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.01\'}"
   }
 }
 layer {
@@ -229,7 +230,6 @@ layer {
   type: "Pooling"
   bottom: "prelu0_1"
   top: "pool1_0_4"
-  top: "pool1_0_4_mask"
   pooling_param {
     pool: MAX
     kernel_size: 2
@@ -273,7 +273,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -326,7 +326,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -373,7 +373,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -419,7 +419,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -430,7 +430,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.01\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.01\'}"
   }
 }
 layer {
@@ -483,7 +483,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -530,7 +530,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -576,7 +576,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -587,7 +587,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.01\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.01\'}"
   }
 }
 layer {
@@ -640,7 +640,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -687,7 +687,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -733,7 +733,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -744,7 +744,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.01\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.01\'}"
   }
 }
 layer {
@@ -797,7 +797,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -844,7 +844,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -890,7 +890,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -901,7 +901,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.01\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.01\'}"
   }
 }
 layer {
@@ -954,7 +954,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1001,7 +1001,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1047,7 +1047,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1058,7 +1058,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -1066,7 +1066,6 @@ layer {
   type: "Pooling"
   bottom: "prelu1_4_4"
   top: "pool2_0_4"
-  top: "pool2_0_4_mask"
   pooling_param {
     pool: MAX
     kernel_size: 2
@@ -1110,7 +1109,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1163,7 +1162,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1210,7 +1209,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1256,7 +1255,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1267,7 +1266,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -1320,7 +1319,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1368,7 +1367,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1414,7 +1413,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1425,7 +1424,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -1478,7 +1477,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1543,7 +1542,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1589,7 +1588,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1600,7 +1599,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -1653,7 +1652,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1701,7 +1700,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1747,7 +1746,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1758,7 +1757,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -1811,7 +1810,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1858,7 +1857,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1904,7 +1903,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -1915,7 +1914,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -1968,7 +1967,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2016,7 +2015,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2062,7 +2061,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2073,7 +2072,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -2126,7 +2125,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2191,7 +2190,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2237,7 +2236,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2248,7 +2247,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -2301,7 +2300,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2349,7 +2348,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2395,7 +2394,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2406,7 +2405,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -2459,7 +2458,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2506,7 +2505,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2552,7 +2551,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2563,7 +2562,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -2616,7 +2615,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2664,7 +2663,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2710,7 +2709,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2721,7 +2720,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -2774,7 +2773,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2839,7 +2838,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2885,7 +2884,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2896,7 +2895,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -2949,7 +2948,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -2997,7 +2996,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3043,7 +3042,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3054,7 +3053,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -3107,7 +3106,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3154,7 +3153,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3200,7 +3199,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3211,7 +3210,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -3264,7 +3263,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3312,7 +3311,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3358,7 +3357,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3369,7 +3368,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -3422,7 +3421,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3487,7 +3486,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3533,7 +3532,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3544,7 +3543,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -3597,7 +3596,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3645,7 +3644,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3691,7 +3690,7 @@ layer {
       type: "constant"
       value: 0.001
     }
-    bn_mode: INFERENCE
+    bn_mode: LEARN
   }
 }
 layer {
@@ -3702,7 +3701,7 @@ layer {
   python_param {
     module: "spatial_dropout"
     layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
+    param_str: "{\'phase\': \'TRAIN\', \'p\': \'0.1\'}"
   }
 }
 layer {
@@ -3719,891 +3718,38 @@ layer {
   top: "prelu3_8_4"
 }
 layer {
-  name: "conv4_0_0"
-  type: "Convolution"
+  name: "deconv_encoder6_0_0"
+  type: "Deconvolution"
   bottom: "prelu3_8_4"
-  top: "conv4_0_0"
-  convolution_param {
-    num_output: 16
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_0_0"
-  type: "BN"
-  bottom: "conv4_0_0"
-  top: "bn4_0_0"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu4_0_0"
-  type: "ReLU"
-  bottom: "bn4_0_0"
-  top: "prelu4_0_0"
-}
-layer {
-  name: "deconv4_0_1"
-  type: "Deconvolution"
-  bottom: "prelu4_0_0"
-  top: "deconv4_0_1"
-  convolution_param {
-    num_output: 16
-    bias_term: true
-    kernel_size: 2
-    stride: 2
-  }
-}
-layer {
-  name: "bn4_0_1"
-  type: "BN"
-  bottom: "deconv4_0_1"
-  top: "bn4_0_1"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu4_0_1"
-  type: "ReLU"
-  bottom: "bn4_0_1"
-  top: "prelu4_0_1"
-}
-layer {
-  name: "conv4_0_2"
-  type: "Convolution"
-  bottom: "prelu4_0_1"
-  top: "conv4_0_2"
-  convolution_param {
-    num_output: 64
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_0_2"
-  type: "BN"
-  bottom: "conv4_0_2"
-  top: "bn4_0_2"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "drop4_0_3"
-  type: "Python"
-  bottom: "bn4_0_2"
-  top: "drop4_0_3"
-  python_param {
-    module: "spatial_dropout"
-    layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
-  }
-}
-layer {
-  name: "conv4_0_4"
-  type: "Convolution"
-  bottom: "prelu3_8_4"
-  top: "conv4_0_4"
-  convolution_param {
-    num_output: 64
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_0_4"
-  type: "BN"
-  bottom: "conv4_0_4"
-  top: "bn4_0_4"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "upsample4_0_4"
-  type: "Upsample"
-  bottom: "bn4_0_4"
-  bottom: "pool2_0_4_mask"
-  top: "upsample4_0_4"
-  upsample_param {
-    scale: 2
-  }
-}
-layer {
-  name: "eltwise4_0_4"
-  type: "Eltwise"
-  bottom: "drop4_0_3"
-  bottom: "upsample4_0_4"
-  top: "eltwise4_0_4"
-}
-layer {
-  name: "prelu4_0_4"
-  type: "ReLU"
-  bottom: "eltwise4_0_4"
-  top: "prelu4_0_4"
-}
-layer {
-  name: "conv4_1_0"
-  type: "Convolution"
-  bottom: "prelu4_0_4"
-  top: "conv4_1_0"
-  convolution_param {
-    num_output: 16
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_1_0"
-  type: "BN"
-  bottom: "conv4_1_0"
-  top: "bn4_1_0"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu4_1_0"
-  type: "ReLU"
-  bottom: "bn4_1_0"
-  top: "prelu4_1_0"
-}
-layer {
-  name: "conv4_1_1"
-  type: "Convolution"
-  bottom: "prelu4_1_0"
-  top: "conv4_1_1"
-  convolution_param {
-    num_output: 16
-    bias_term: true
-    pad: 1
-    kernel_size: 3
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_1_1"
-  type: "BN"
-  bottom: "conv4_1_1"
-  top: "bn4_1_1"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu4_1_1"
-  type: "ReLU"
-  bottom: "bn4_1_1"
-  top: "prelu4_1_1"
-}
-layer {
-  name: "conv4_1_2"
-  type: "Convolution"
-  bottom: "prelu4_1_1"
-  top: "conv4_1_2"
-  convolution_param {
-    num_output: 64
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_1_2"
-  type: "BN"
-  bottom: "conv4_1_2"
-  top: "bn4_1_2"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "drop4_1_3"
-  type: "Python"
-  bottom: "bn4_1_2"
-  top: "drop4_1_3"
-  python_param {
-    module: "spatial_dropout"
-    layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
-  }
-}
-layer {
-  name: "eltwise4_1_4"
-  type: "Eltwise"
-  bottom: "drop4_1_3"
-  bottom: "prelu4_0_4"
-  top: "eltwise4_1_4"
-}
-layer {
-  name: "prelu4_1_4"
-  type: "ReLU"
-  bottom: "eltwise4_1_4"
-  top: "prelu4_1_4"
-}
-layer {
-  name: "conv4_2_0"
-  type: "Convolution"
-  bottom: "prelu4_1_4"
-  top: "conv4_2_0"
-  convolution_param {
-    num_output: 16
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_2_0"
-  type: "BN"
-  bottom: "conv4_2_0"
-  top: "bn4_2_0"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu4_2_0"
-  type: "ReLU"
-  bottom: "bn4_2_0"
-  top: "prelu4_2_0"
-}
-layer {
-  name: "conv4_2_1"
-  type: "Convolution"
-  bottom: "prelu4_2_0"
-  top: "conv4_2_1"
-  convolution_param {
-    num_output: 16
-    bias_term: true
-    pad: 1
-    kernel_size: 3
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_2_1"
-  type: "BN"
-  bottom: "conv4_2_1"
-  top: "bn4_2_1"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu4_2_1"
-  type: "ReLU"
-  bottom: "bn4_2_1"
-  top: "prelu4_2_1"
-}
-layer {
-  name: "conv4_2_2"
-  type: "Convolution"
-  bottom: "prelu4_2_1"
-  top: "conv4_2_2"
-  convolution_param {
-    num_output: 64
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn4_2_2"
-  type: "BN"
-  bottom: "conv4_2_2"
-  top: "bn4_2_2"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "drop4_2_3"
-  type: "Python"
-  bottom: "bn4_2_2"
-  top: "drop4_2_3"
-  python_param {
-    module: "spatial_dropout"
-    layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
-  }
-}
-layer {
-  name: "eltwise4_2_4"
-  type: "Eltwise"
-  bottom: "drop4_2_3"
-  bottom: "prelu4_1_4"
-  top: "eltwise4_2_4"
-}
-layer {
-  name: "prelu4_2_4"
-  type: "ReLU"
-  bottom: "eltwise4_2_4"
-  top: "prelu4_2_4"
-}
-layer {
-  name: "conv5_0_0"
-  type: "Convolution"
-  bottom: "prelu4_2_4"
-  top: "conv5_0_0"
-  convolution_param {
-    num_output: 4
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn5_0_0"
-  type: "BN"
-  bottom: "conv5_0_0"
-  top: "bn5_0_0"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu5_0_0"
-  type: "ReLU"
-  bottom: "bn5_0_0"
-  top: "prelu5_0_0"
-}
-layer {
-  name: "deconv5_0_1"
-  type: "Deconvolution"
-  bottom: "prelu5_0_0"
-  top: "deconv5_0_1"
+  top: "deconv_encoder6_0_0"
   convolution_param {
     num_output: 4
     bias_term: true
-    kernel_size: 2
-    stride: 2
-  }
-}
-layer {
-  name: "bn5_0_1"
-  type: "BN"
-  bottom: "deconv5_0_1"
-  top: "bn5_0_1"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu5_0_1"
-  type: "ReLU"
-  bottom: "bn5_0_1"
-  top: "prelu5_0_1"
-}
-layer {
-  name: "conv5_0_2"
-  type: "Convolution"
-  bottom: "prelu5_0_1"
-  top: "conv5_0_2"
-  convolution_param {
-    num_output: 16
-    bias_term: false
     kernel_size: 1
     stride: 1
-    weight_filler {
-      type: "msra"
-    }
   }
 }
 layer {
-  name: "bn5_0_2"
-  type: "BN"
-  bottom: "conv5_0_2"
-  top: "bn5_0_2"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "deconv_encoder6_0_0"
+  bottom: "label"
+  top: "loss"
+  loss_param {
+    ignore_label: 255
+    weight_by_label_freqs: true
+    class_weighting: 1.2041
+    class_weighting: 0.2188
+    class_weighting: 1.0698
+    class_weighting: 0.6007
+
   }
 }
 layer {
-  name: "drop5_0_3"
-  type: "Python"
-  bottom: "bn5_0_2"
-  top: "drop5_0_3"
-  python_param {
-    module: "spatial_dropout"
-    layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
-  }
-}
-layer {
-  name: "conv5_0_4"
-  type: "Convolution"
-  bottom: "prelu4_2_4"
-  top: "conv5_0_4"
-  convolution_param {
-    num_output: 16
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn5_0_4"
-  type: "BN"
-  bottom: "conv5_0_4"
-  top: "bn5_0_4"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "upsample5_0_4"
-  type: "Upsample"
-  bottom: "bn5_0_4"
-  bottom: "pool1_0_4_mask"
-  top: "upsample5_0_4"
-  upsample_param {
-    scale: 2
-  }
-}
-layer {
-  name: "eltwise5_0_4"
-  type: "Eltwise"
-  bottom: "drop5_0_3"
-  bottom: "upsample5_0_4"
-  top: "eltwise5_0_4"
-}
-layer {
-  name: "prelu5_0_4"
-  type: "ReLU"
-  bottom: "eltwise5_0_4"
-  top: "prelu5_0_4"
-}
-layer {
-  name: "conv5_1_0"
-  type: "Convolution"
-  bottom: "prelu5_0_4"
-  top: "conv5_1_0"
-  convolution_param {
-    num_output: 4
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn5_1_0"
-  type: "BN"
-  bottom: "conv5_1_0"
-  top: "bn5_1_0"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu5_1_0"
-  type: "ReLU"
-  bottom: "bn5_1_0"
-  top: "prelu5_1_0"
-}
-layer {
-  name: "conv5_1_1"
-  type: "Convolution"
-  bottom: "prelu5_1_0"
-  top: "conv5_1_1"
-  convolution_param {
-    num_output: 4
-    bias_term: true
-    pad: 1
-    kernel_size: 3
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn5_1_1"
-  type: "BN"
-  bottom: "conv5_1_1"
-  top: "bn5_1_1"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "prelu5_1_1"
-  type: "ReLU"
-  bottom: "bn5_1_1"
-  top: "prelu5_1_1"
-}
-layer {
-  name: "conv5_1_2"
-  type: "Convolution"
-  bottom: "prelu5_1_1"
-  top: "conv5_1_2"
-  convolution_param {
-    num_output: 16
-    bias_term: false
-    kernel_size: 1
-    stride: 1
-    weight_filler {
-      type: "msra"
-    }
-  }
-}
-layer {
-  name: "bn5_1_2"
-  type: "BN"
-  bottom: "conv5_1_2"
-  top: "bn5_1_2"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 1
-    decay_mult: 0
-  }
-  bn_param {
-    scale_filler {
-      type: "constant"
-      value: 1
-    }
-    shift_filler {
-      type: "constant"
-      value: 0.001
-    }
-    bn_mode: INFERENCE
-  }
-}
-layer {
-  name: "drop5_1_3"
-  type: "Python"
-  bottom: "bn5_1_2"
-  top: "drop5_1_3"
-  python_param {
-    module: "spatial_dropout"
-    layer: "SpatialDropoutLayer"
-    param_str: "{\'phase\': \'TEST\', \'p\': \'0.1\'}"
-  }
-}
-layer {
-  name: "eltwise5_1_4"
-  type: "Eltwise"
-  bottom: "drop5_1_3"
-  bottom: "prelu5_0_4"
-  top: "eltwise5_1_4"
-}
-layer {
-  name: "prelu5_1_4"
-  type: "ReLU"
-  bottom: "eltwise5_1_4"
-  top: "prelu5_1_4"
-}
-layer {
-  name: "deconv6_0_0"
-  type: "Deconvolution"
-  bottom: "prelu5_1_4"
-  top: "deconv6_0_0"
-  convolution_param {
-    num_output:5 
-    bias_term: true
-    kernel_size: 2
-    stride: 2
-  }
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "deconv_encoder6_0_0"
+  bottom: "label"
+  top: "accuracy"
+  top: "per_class_accuracy"
 }
