@@ -1,9 +1,17 @@
-input: "data"
-input_shape {
-  dim: 1
-  dim: 3
-  dim: 264
-  dim: 480
+name: "ENet"
+layer {
+  name: "data"
+  type: "DenseImageData"
+  top: "data"
+  top: "label"
+  dense_image_data_param {
+    source: "/root/ENet/dataset/train_greenhouse_bg.txt"
+    batch_size: 8
+    shuffle: true
+    new_height: 264
+    new_width: 480 
+    label_divide_factor: 1
+  }
 }
 layer {
   name: "conv0_1"
@@ -4599,4 +4607,27 @@ layer {
     kernel_size: 2
     stride: 2
   }
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "deconv6_0_0"
+  bottom: "label"
+  top: "loss"
+  loss_param {
+    weight_by_label_freqs: true
+    class_weighting: 1.3215
+    class_weighting: 0.2402
+    class_weighting: 1.1741
+    class_weighting: 0.6593
+    class_weighting: 0.3689
+  }
+}
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "deconv6_0_0"
+  bottom: "label"
+  top: "accuracy"
+  top: "per_class_accuracy"
 }
