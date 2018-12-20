@@ -5,11 +5,11 @@ layer {
   top: "data"
   top: "label"
   dense_image_data_param {
-    source: "/root/ENet/dataset/train_fine_cityscapes.txt"
-    batch_size: 6
+    source: "/root/ENet/dataset/train_greenhouse_bg.txt"
+    batch_size: 10
     shuffle: true
-    new_height: 256
-    new_width: 512
+    new_height: 264
+    new_width: 480
     label_divide_factor: 8
   }
 }
@@ -3723,7 +3723,7 @@ layer {
   bottom: "prelu3_8_4"
   top: "deconv_encoder6_0_0"
   convolution_param {
-    num_output: 19
+    num_output: 5
     bias_term: true
     kernel_size: 1
     stride: 1
@@ -3736,8 +3736,12 @@ layer {
   bottom: "label"
   top: "loss"
   loss_param {
-    ignore_label: 255
-    weight_by_label_freqs: false
+    weight_by_label_freqs: true
+    class_weighting: 1.3215
+    class_weighting: 0.2402
+    class_weighting: 1.1741
+    class_weighting: 0.6593
+    class_weighting: 0.3689
   }
 }
 layer {
